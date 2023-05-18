@@ -1,0 +1,447 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.vidaniello</groupId>
+	<artifactId>amazon-sp-api-swagger-generator</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+
+	<properties>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<log4j.version>2.18.0</log4j.version>
+	</properties>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-jul -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jul</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-codegen-maven-plugin</artifactId>
+				<version>2.4.30</version>
+				<configuration>
+					<language>java</language>
+
+					<templateDirectory>${project.basedir}/target/amz-git-repo/clients/sellingpartner-api-aa-java/resources/swagger-codegen/templates/</templateDirectory>
+
+					<groupId>${project.groupId}</groupId>
+					<artifactId>amazon-sp-api</artifactId>
+					<artifactVersion>1.0.0-SNAPSHOT</artifactVersion>
+
+					<!--
+					<apiPackage>${project.groupId}.amazonsp.api</apiPackage>
+					<modelPackage>${project.groupId}.amazonsp.model</modelPackage>
+					-->
+					<invokerPackage>com.amazon.invoker</invokerPackage>
+					<apiPackage>com.amazon.api</apiPackage>
+					
+					<generateApiDocumentation>false</generateApiDocumentation>
+					<generateModelDocumentation>false</generateModelDocumentation>
+					<generateModelTests>false</generateModelTests>
+					<generateApiTests>false</generateApiTests>
+
+				</configuration>
+				<executions>
+				
+					<execution>
+						<id>apluscontent</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/aplus-content-api-model/aplusContent_2020-11-01.json</inputSpec>
+							<modelPackage>com.amazon.model.apluscontent</modelPackage>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>authorization</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/authorization-api-model/authorization.json</inputSpec>
+							<apiPackage>com.amazon.api.authorization</apiPackage>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>catalogitems</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/catalog-items-api-model/catalogItemsV0.json</inputSpec>
+							<modelPackage>com.amazon.model.catalogitems</modelPackage>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>easyship</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/easy-ship-model/easyShip_2022-03-23.json</inputSpec>
+							<modelPackage>com.amazon.model.easyship</modelPackage>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>fbainbound</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/fba-inbound-eligibility-api-model/fbaInbound.json</inputSpec>
+							<modelPackage>com.amazon.model.fbainbound</modelPackage>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>fbainventory</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/fba-inventory-api-model/fbaInventory.json</inputSpec>
+							<modelPackage>com.amazon.model.fbainventory</modelPackage>
+						</configuration>
+					</execution>	
+									
+					<execution>
+						<id>fbasmallandlight</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/fba-small-and-light-api-model/fbaSmallandLight.json</inputSpec>
+							<modelPackage>com.amazon.model.fbasmallandlight</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>feeds</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/feeds-api-model/feeds_2021-06-30.json</inputSpec>
+							<modelPackage>com.amazon.model.feeds</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>finances</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/finances-api-model/financesV0.json</inputSpec>
+							<modelPackage>com.amazon.model.finances</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>fulfillmentinbound</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/fulfillment-inbound-api-model/fulfillmentInboundV0.json</inputSpec>
+							<modelPackage>com.amazon.model.fulfillmentinbound</modelPackage>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>fulfillmentoutbound</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/fulfillment-outbound-api-model/fulfillmentOutbound_2020-07-01.json</inputSpec>
+							<modelPackage>com.amazon.model.fulfillmentoutbound</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>listingsitems</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/listings-items-api-model/listingsItems_2021-08-01.json</inputSpec>
+							<modelPackage>com.amazon.model.listingsitems</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>listingsrestrictions</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/listings-restrictions-api-model/listingsRestrictions_2021-08-01.json</inputSpec>
+							<modelPackage>com.amazon.model.listingsrestrictions</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>merchantfulfillment</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/merchant-fulfillment-api-model/merchantFulfillmentV0.json</inputSpec>
+							<modelPackage>com.amazon.model.merchantfulfillment</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>messaging</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/messaging-api-model/messaging.json</inputSpec>
+							<modelPackage>com.amazon.model.messaging</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>notifications</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/notifications-api-model/notifications.json</inputSpec>
+							<modelPackage>com.amazon.model.notifications</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>orders</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/orders-api-model/ordersV0.json</inputSpec>
+							<modelPackage>com.amazon.model.orders</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>productfees</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/product-fees-api-model/productFeesV0.json</inputSpec>
+							<modelPackage>com.amazon.model.productfees</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>productpricing</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/product-pricing-api-model/productPricingV0.json</inputSpec>
+							<modelPackage>com.amazon.model.productpricing</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>definitionsproducttypes</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/product-type-definitions-api-model/definitionsProductTypes_2020-09-01.json</inputSpec>
+							<modelPackage>com.amazon.model.definitionsproducttypes</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>reports</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/reports-api-model/reports_2021-06-30.json</inputSpec>
+							<modelPackage>com.amazon.model.reports</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>sales</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/sales-api-model/sales.json</inputSpec>
+							<modelPackage>com.amazon.model.sales</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>sellers</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/sellers-api-model/sellers.json</inputSpec>
+							<modelPackage>com.amazon.model.sellers</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>services</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/services-api-model/services.json</inputSpec>
+							<modelPackage>com.amazon.model.services</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>shipmentinvoicing</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/shipment-invoicing-api-model/shipmentInvoicingV0.json</inputSpec>
+							<modelPackage>com.amazon.model.shipmentinvoicing</modelPackage>
+						</configuration>
+					</execution>	
+									
+					<execution>
+						<id>shipping</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/shipping-api-model/shipping.json</inputSpec>
+							<modelPackage>com.amazon.model.shipping</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>solicitations</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/solicitations-api-model/solicitations.json</inputSpec>
+							<modelPackage>com.amazon.model.solicitations</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>tokens</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/tokens-api-model/tokens_2021-03-01.json</inputSpec>
+							<modelPackage>com.amazon.model.tokens</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>uploads</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/uploads-api-model/uploads_2020-11-01.json</inputSpec>
+							<modelPackage>com.amazon.model.uploads</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>vendordirectfulfillmentinventory</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-direct-fulfillment-inventory-api-model/vendorDirectFulfillmentInventoryV1.json</inputSpec>
+							<modelPackage>com.amazon.model.vendordirectfulfillmentinventory</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>vendordirectfulfillmentorders</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-direct-fulfillment-orders-api-model/vendorDirectFulfillmentOrdersV1.json</inputSpec>
+							<modelPackage>com.amazon.model.vendordirectfulfillmentorders</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>vendordirectfulfillmentpayments</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-direct-fulfillment-payments-api-model/vendorDirectFulfillmentPaymentsV1.json</inputSpec>
+							<modelPackage>com.amazon.model.vendordirectfulfillmentpayments</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>vendordirectfulfillmentsandboxdata</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-direct-fulfillment-sandbox-test-data-api-model/vendorDirectFulfillmentSandboxData_2021-10-28.json</inputSpec>
+							<modelPackage>com.amazon.model.vendordirectfulfillmentsandboxdata</modelPackage>
+						</configuration>
+					</execution>
+										
+					<execution>
+						<id>vendordirectfulfillmentshipping</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-direct-fulfillment-shipping-api-model/vendorDirectFulfillmentShippingV1.json</inputSpec>
+							<modelPackage>com.amazon.model.vendordirectfulfillmentshipping</modelPackage>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>vendordirectfulfillmenttransactions</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-direct-fulfillment-transactions-api-model/vendorDirectFulfillmentTransactionsV1.json</inputSpec>
+							<modelPackage>com.amazon.model.vendordirectfulfillmenttransactions</modelPackage>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>vendorinvoices</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-invoices-api-model/vendorInvoices.json</inputSpec>
+							<modelPackage>com.amazon.model.vendorinvoices</modelPackage>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>vendororders</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-orders-api-model/vendorOrders.json</inputSpec>
+							<modelPackage>com.amazon.model.vendororders</modelPackage>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>vendorshipments</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-shipments-api-model/vendorShipments.json</inputSpec>
+							<modelPackage>com.amazon.model.vendorshipments</modelPackage>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>vendortransactionstatus.json</id>
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/vendor-transaction-status-api-model/vendortransactionstatus.json</inputSpec>
+							<modelPackage>com.amazon.model.vendortransactionstatus.json</modelPackage>
+						</configuration>
+					</execution>										
+						
+					<!--													
+					<execution>
+						<id>orders</id>
+						
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						
+						<configuration>
+							<inputSpec>${project.basedir}/target/amz-git-repo/models/orders-api-model/ordersV0.json</inputSpec>
+							<modelPackage>com.amazon.model.orders</modelPackage>
+						</configuration>
+					</execution>
+					-->
+					
+				</executions>
+			</plugin>
+						
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>io.swagger</groupId>
+										<artifactId>
+											swagger-codegen-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.3.1,)
+										</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>
